@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - postgres:/var/lib/postgresql/data
-  app:
+  web:
     build: .
     command: "bin/dev"
     environment:
