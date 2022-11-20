@@ -9,6 +9,7 @@
 ## 構築方法
 
 ### 1. テンプレートリポジトリを取得
+「YOUR_REPOSITORY_NAME」を作成するアプリ名に指定する
 ```bash
 $ mkdir YOUR_REPOSITORY_NAME
 $ cd YOUR_REPOSITORY_NAME
@@ -24,10 +25,10 @@ $ docker-compose run web rails new . --force --database=postgresql --css tailwin
 ### 3. データベースを作成
 ##### 1. `database.yml`を編集
 1. 以下のコードに書き換える  
-（test用のDBは作成しないようにコメントアウトしている）
-2. データベース名を指定する  
-（development > database > APP_NAME_development）
+2. 「APP_NAME_development」をデータベース名に書き換える
 
+  
+###### ※test用のDBは作成しないようにコメントアウトしている
 ```bash
 default: &default
   adapter: postgresql
