@@ -1,15 +1,14 @@
-# Docker template for Rails7 x TailwindCSS x PostgreSQL
+# Rails7 x TailwindCSS x PostgreSQLのDockerテンプレート
 
 ```
-Backend:  Ruby on Rails 7
-Frontend: TailwindCSS & Stimulus.js
-Database: PostgreSQL
+バックエンド：　　Ruby on Rails 7
+フロントエンド：　TailwindCSS & Stimulus.js
+データベース：　　PostgreSQL
 ```
 
-## Usage
+## 構築方法
 
-### 1. Git Clone
-
+### 1. テンプレートリポジトリを取得
 ```bash
 $ mkdir YOUR_REPOSITORY_NAME
 $ cd YOUR_REPOSITORY_NAME
@@ -17,17 +16,17 @@ $ git clone git@github.com:ShutaTakeuchi0410/rails7-tailwindcss-postgres-docker-
 $ rm -rf .git/
 ```
 
-### 2. Rails new
-
+### 2. Railsを作成
 ```bash
 $ docker-compose run web rails new . --force --database=postgresql --css tailwind
 ```
 
-### 3. Create Database
-
-#### 1. Edit `database.yml`
-1. Paste the following codes
-2. Change database name (development > database > APP_NAME_development)
+### 3. データベースを作成
+##### 1. `database.yml`を編集
+1. 以下のコードに書き換える  
+（test用のDBは作成しないようにコメントアウトしている）
+2. データベース名を指定する  
+（development > database > APP_NAME_development）
 
 ```bash
 default: &default
@@ -51,21 +50,20 @@ production:
   url: <%= ENV['DATABASE_URL'] %>
 ```
 
-#### 2. Create & Migrate
+##### 2. 作成＆マイグレーションのコマンドを実行
 ```
 $ docker-compose run --rm web rails db:create
 $ docker-compose run --rm web rails db:migrate
 ```
 
-### 4. Edit `Procfile.dev`
-Paste the following codes
-
+### 4. `Procfile.dev`を編集
+以下のコードに書き換える
 ```
 web: bin/rails server -p 3000 -b "0.0.0.0"
 css: bin/rails tailwindcss:watch
 ```
 
-### 5. Start the app
+### 5. アプリを起動
 ```
 $ docker-compose up
 ```
